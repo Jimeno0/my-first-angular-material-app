@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css">
+  <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body ng-app="MyApp" layout="column">
 <md-toolbar >
@@ -12,12 +13,28 @@
 
 
 <div class="container" layout="row" flex>
-  <md-sidenav md-is-locked-open="true" class="lightblue" >
-    SideNav
+  <md-sidenav md-is-locked-open="true" class="md-whiteframe-2dp" >
+    <md-list>
+      <md-list-item>
+        <md-button>
+          <md-icon md-svg-icon="svg/avatar-1.svg" class="avatar"></md-icon>
+          Avatar uno
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button>
+          <md-icon md-svg-icon="svg/avatar-4.svg" class="avatar"></md-icon>
+          Avatar dos
+        </md-button>
+      </md-list-item>
+    </md-list>
   </md-sidenav> 
-  <md-content id="contentId" class="lightgreen" flex>
-    Content
+  <md-content id="content" flex>
+    <md-icon md-svg-icon="svg/avatar-1.svg" class="avatar"></md-icon>
+    <h2>Nombre blabla</h2>
+    <p>Lorem ipsum dolor sit amet, ne quod novum mei</p>
   </md-content>
+
 </div>
 
 
@@ -34,10 +51,5 @@
 
 </script>
 
-<style type="text/css">
-  .red{background-color: red}
-  .lightblue{background-color: lightblue}
-  .lightgreen{background-color: lightgreen}
-</style>
 </body>
 </html>
