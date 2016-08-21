@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.js">
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css">
 </head>
-<body ng-app="MyApp">
+<body ng-app="MyApp" layout="column">
+<md-toolbar >
+  <h1>
+    This is a angular material toolbar
+  </h1>
+</md-toolbar>
+
+
+<div class="container" layout="row" flex>
+  <md-sidenav md-is-locked-open="true" class="lightblue" >
+    SideNav
+  </md-sidenav> 
+  <md-content id="contentId" class="lightgreen" flex>
+    Content
+  </md-content>
+</div>
+
 
 <script type="text/javascript" src="bower_components/angular/angular.js" ></script>
 <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js" ></script>
@@ -17,5 +33,11 @@
     });
 
 </script>
+
+<style type="text/css">
+  .red{background-color: red}
+  .lightblue{background-color: lightblue}
+  .lightgreen{background-color: lightgreen}
+</style>
 </body>
 </html>
