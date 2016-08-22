@@ -4,7 +4,7 @@
   <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css">
   <link rel="stylesheet" type="text/css" href="app.css">
 </head>
-<body ng-app="MyApp" layout="column">
+<body ng-app="MyApp" layout="column" ng-controller="UserController as ul">
 <md-toolbar >
   <h1>
     This is a angular material toolbar
@@ -15,24 +15,18 @@
 <div class="container" layout="row" flex>
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-2dp" >
     <md-list>
-      <md-list-item>
-        <md-button>
-          <md-icon md-svg-icon="svg/avatar-1.svg" class="avatar"></md-icon>
-          Avatar uno
-        </md-button>
-      </md-list-item>
-      <md-list-item>
-        <md-button>
-          <md-icon md-svg-icon="svg/avatar-4.svg" class="avatar"></md-icon>
-          Avatar dos
+      <md-list-item ng-repeat="u in ul.users">
+        <md-button ng-click="ul.selectUser(u)">
+          <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon>
+          {{u.name}}
         </md-button>
       </md-list-item>
     </md-list>
   </md-sidenav> 
   <md-content id="content" flex>
-    <md-icon md-svg-icon="svg/avatar-1.svg" class="avatar"></md-icon>
-    <h2>Nombre blabla</h2>
-    <p>Lorem ipsum dolor sit amet, ne quod novum mei</p>
+    <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+    <h2>{{ul.selected.name}}</h2>
+    <p>{{ul.selected.content}}</p>
   </md-content>
 
 </div>
@@ -42,11 +36,15 @@
 <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js" ></script>
 <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js" ></script>
 <script type="text/javascript" src="bower_components/angular-material/angular-material.js" ></script>
+<script type="text/javascript" src="users/Users.js"></script>
+<script type="text/javascript" src="users/UserController.js"></script>
+<script type="text/javascript" src="users/UserService.js"></script>
 
 <script type="text/javascript">
-  angular.module('MyApp',['ngMaterial'])
-    .run(function(){
-      console.log('My app is ready yeah');
+  angular.module('MyApp',['ngMaterial','users'])
+    .config(function($mdIconProvider){
+      $mdIconProvider.defaultIconSet('svg/avatars.svg', 128);
+
     });
 
 </script>
