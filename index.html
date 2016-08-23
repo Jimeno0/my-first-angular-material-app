@@ -16,7 +16,7 @@
   <md-sidenav md-is-locked-open="true" class="md-whiteframe-2dp" >
     <md-list>
       <md-list-item ng-repeat="u in ul.users">
-        <md-button ng-click="ul.selectUser(u)">
+        <md-button ng-click="ul.selectUser(u)" class="share">
           <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon>
           {{u.name}}
         </md-button>
@@ -24,11 +24,15 @@
     </md-list>
   </md-sidenav> 
   <md-content id="content" flex>
+
     <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
     <h2>{{ul.selected.name}}</h2>
     <p>{{ul.selected.content}}</p>
-  </md-content>
 
+    <md-button class="share" aria-label="Share" md-no-ink="true" flex-align="end" ng-click="ul.makeContact(ul.selected)" >
+      <md-icon md-svg-icon="share"></md-icon>
+    </md-button>
+  </md-content>
 </div>
 
 
@@ -44,6 +48,7 @@
   angular.module('MyApp',['ngMaterial','users'])
     .config(function($mdIconProvider){
       $mdIconProvider.defaultIconSet('svg/avatars.svg', 128);
+      $mdIconProvider.icon('share','svg/share.svg',24);
 
     });
 
