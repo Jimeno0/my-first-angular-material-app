@@ -5,18 +5,21 @@
   <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body ng-app="MyApp" layout="column" ng-controller="UserController as ul">
-<md-toolbar >
+<md-toolbar layout="row">
+  <md-button aria-label="Show menu" ng-click="ul.toggleMenu()" hide-gt-sm>
+    <md-icon md-svg-icon="menu" ></md-icon>
+  </md-button>
   <h1>
-    This is a angular material toolbar
+    Contacts
   </h1>
 </md-toolbar>
 
 
 <div class="container" layout="row" flex>
-  <md-sidenav md-is-locked-open="true" class="md-whiteframe-2dp" >
+  <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-2dp" md-component-id="left">
     <md-list>
       <md-list-item ng-repeat="u in ul.users">
-        <md-button ng-click="ul.selectUser(u)" class="share">
+        <md-button ng-click="ul.selectUser(u); ul.toggleMenu()" class="share">
           <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon>
           {{u.name}}
         </md-button>
@@ -29,7 +32,7 @@
     <h2>{{ul.selected.name}}</h2>
     <p>{{ul.selected.content}}</p>
 
-    <md-button class="share" aria-label="Share" md-no-ink="true" flex-align="end" ng-click="ul.makeContact(ul.selected)" >
+    <md-button class="share" aria-label="Share" md-no-ink flex-align="end" ng-click="ul.makeContact(ul.selected)" >
       <md-icon md-svg-icon="share"></md-icon>
     </md-button>
   </md-content>
@@ -49,6 +52,7 @@
     .config(function($mdIconProvider){
       $mdIconProvider.defaultIconSet('svg/avatars.svg', 128);
       $mdIconProvider.icon('share','svg/share.svg',24);
+      $mdIconProvider.icon('menu','svg/menu.svg',24);
 
     });
 

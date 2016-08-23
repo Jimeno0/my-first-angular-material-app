@@ -1,14 +1,15 @@
 angular
   .module('users')
-  .controller('UserController',['userService','$mdBottomSheet', UserController]);
+  .controller('UserController',['userService','$mdBottomSheet','$mdSidenav', UserController]);
 
-function UserController(userService, $mdBottomSheet){
+function UserController(userService, $mdBottomSheet, $mdSidenav){
   var self=this;
 
     self.selected     = null;
     self.users        = [ ];
     self.selectUser   = selectUser;
-    self.makeContact         = makeContact;
+    self.makeContact  = makeContact;
+    self.toggleMenu     = toggleMenu;
     userService
           .loadAllUsers()
           .then( function( users ) {
@@ -19,6 +20,10 @@ function UserController(userService, $mdBottomSheet){
 
     function selectUser ( user ) {
       self.selected = angular.isNumber(user) ? $scope.users[user] : user;
+    }
+
+    function toggleMenu (){
+      $mdSidenav('left').toggle();
     }
 
     function makeContact (selectedUser) {
