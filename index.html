@@ -3,16 +3,30 @@
 <head>
   <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css">
   <link rel="stylesheet" type="text/css" href="app.css">
+  <style type="text/css">
+    .perfil{
+      width: 88px;
+      height: 59px;
+    }
+  </style>
+
 </head>
 <body ng-app="MyApp" layout="column" ng-controller="UserController as ul">
-<md-toolbar layout="row">
+<md-toolbar layout="row" layout-align="space-between">
   <md-button aria-label="Show menu" ng-click="ul.toggleMenu()" hide-gt-sm>
     <md-icon md-svg-icon="menu" ></md-icon>
   </md-button>
   <h1>
     Contacts
   </h1>
+
+  <md-button aria-label="Perfil" ng-href="https://jimeno0.github.io" >
+    <md-icon md-svg-icon="perfil" class="perfil" ></md-icon>
+  </md-button>
+
 </md-toolbar>
+
+
 
 
 <div class="container" layout="row" flex>
@@ -27,7 +41,6 @@
     </md-list>
   </md-sidenav> 
   <md-content id="content" flex>
-
     <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
     <h2>{{ul.selected.name}}</h2>
     <p>{{ul.selected.content}}</p>
@@ -49,10 +62,18 @@
 
 <script type="text/javascript">
   angular.module('MyApp',['ngMaterial','users'])
-    .config(function($mdIconProvider){
+    .config(function($mdIconProvider, $mdThemingProvider){
       $mdIconProvider.defaultIconSet('svg/avatars.svg', 128);
       $mdIconProvider.icon('share','svg/share.svg',24);
       $mdIconProvider.icon('menu','svg/menu.svg',24);
+      $mdIconProvider.icon('perfil','svg/caraperfil.svg',24);
+
+      $mdThemingProvider
+        .theme('default')
+        .primaryPalette('blue')
+        .accentPalette('teal')
+        .warnPalette('red')
+        .backgroundPalette('grey');
 
     });
 
